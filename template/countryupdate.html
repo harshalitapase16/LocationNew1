@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid flex-grow-3 container-p-y">
+<div class="row">
+ <div class="col-xl">
+  <div class="card mb-4">
+   <div class="card-header d-flex justify-content-between align-items-center">
+    <h5 class="mb-0">Update Country Table</h5>
+   </div>
+   <div class="card-body">
+    <form action="{% url 'updatecountry' country.id %}" method="post" enctype="multipart/form-data">
+     {% csrf_token %}
+     <div class="row">
+      <div class="mb-3 col-md-6">
+       <label class="form-label" for="basic-default-fullname">Country Name</label>
+       <input type="text" class="form-control" id="basic-default-fullname" value="{{country.name}}" placeholder="Country Name"
+        name="country_name" />
+      </div>
+      <div class="mb-3 col-md-6">
+       <label class="form-label" for="basic-default-company">Slug</label>
+       <input type="text" class="form-control" id="basic-default-company" placeholder="Slug" value="{{country.slug}}" name="country_slug" />
+      </div>
+      <div class="mb-3 col-md-4">
+       <label class="form-label" for="basic-default-email">Code</label>
+       <input type="text" id="basic-default-email" class="form-control" placeholder="Code" value="{{country.code}}"
+        aria-describedby="basic-default-email2" name="code" />
+        <img src="{{country.flag.url}}" alt="flag" width="100px" class=" mt-5">
+      </div>
+      <div class="mb-3 col-md-3">
+       <label for="formFile" class="form-label">Country Flag</label>
+       <input class="form-control" type="file" id="formFile" name="flag">
+      </div>
+      <div class="mb-3 mt-5 col-md-3">
+        {% if country.is_state_available %}
+       <input class="form-check-input" type="checkbox" value="1" id="defaultCheck1" name="is_state_available" checked>
+       {% else %}
+       <input class="form-check-input" type="checkbox" value="1" id="defaultCheck1" name="is_state_available">
+       {% endif %}
+       <label class="form-check-label" for="defaultCheck1"> State Available </label>
+      </div>
+     </div>
+     <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+   </div>
+  </div>
+ </div>
+</div>
+</div>
+{% endblock content %}

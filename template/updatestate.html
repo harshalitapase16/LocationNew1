@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<!-- Basic Layout -->
+<div class="container-fluid flex-grow-3 container-p-y">
+    <div class="row">
+        <div class="col-xl">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">State Table</h5>
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'updatestate' state.id %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                             <label class="form-label" for="basic-default-fullname">State Name</label>
+                             <input type="text" class="form-control" id="basic-default-fullname"
+                                 placeholder="Country Name" value="{{state.statename}}" name="state_name" />
+                         </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="basic-default-company">Slug</label>
+                                <input type="text" class="form-control" id="basic-default-company" value="{{state.stateslug}}" placeholder="Slug"
+                                    name="state_slug" />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                             <label class="form-label" for="basic-default-company">Language</label>
+                             <input type="text" class="form-control" id="basic-default-company" value="{{state.language}}" placeholder="Language"
+                                 name="language" />
+                         </div>
+                            <div class="mb-3 col-md-4">
+                                <label class="form-label" for="basic-default-email">Population</label>
+                                <input type="number" id="basic-default-email" class="form-control" value="{{state.population}}" placeholder="Population"
+                                    aria-describedby="basic-default-email2" name="population" />
+                            </div> 
+                        </div> 
+                        <button type="submit" class="btn btn-primary">Update State</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+
+    <!-- / Content -->
+
+</div>
+<!--/ Basic Bootstrap Table -->
+{% endblock content %}
